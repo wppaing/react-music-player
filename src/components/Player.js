@@ -86,7 +86,7 @@ const Player = ({
   useEffect(() => {
     setSongs(
       songs.map((song) => {
-        return song.id == currentSong.id
+        return song.id === currentSong.id
           ? { ...song, active: true }
           : { ...song, active: false };
       })

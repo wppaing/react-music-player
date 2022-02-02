@@ -20,7 +20,7 @@ const LibraryItem = ({
     // active status changing
     setSongs(
       songs.map((song) => {
-        return song.id == selectedSong[0].id
+        return song.id === selectedSong[0].id
           ? { ...song, active: true }
           : { ...song, active: false };
       })
