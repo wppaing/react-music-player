@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPlay,
@@ -87,7 +87,6 @@ const Player = ({
   };
 
   const activeLibraryHandler = (nextPrev) => {
-    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     setSongs(
       songs.map((song) => {
         return song.id === nextPrev.id
