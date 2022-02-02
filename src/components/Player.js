@@ -62,16 +62,19 @@ const Player = ({
     let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     if (direction === "forward") {
       await setCurrentSong(songs[(currentIndex + 1) % songs.length]);
-      audioRef.current.play();
+      activeLibraryHandler(songs[(currentIndex + 1) % songs.length]);
+      isPlaying ? audioRef.current.play() : audioRef.current.pause();
     }
     if (direction === "backward") {
       if ((currentIndex - 1) % songs.length === -1) {
         await setCurrentSong(songs[songs.length - 1]);
-        audioRef.current.play();
+        activeLibraryHandler(songs[songs.length - 1]);
+        isPlaying ? audioRef.current.play() : audioRef.current.pause();
         return;
       }
       await setCurrentSong(songs[(currentIndex - 1) % songs.length]);
-      audioRef.current.play();
+      activeLibraryHandler(songs[(currentIndex - 1) % songs.length]);
+      isPlaying ? audioRef.current.play() : audioRef.current.pause();
     }
   };
 
@@ -83,16 +86,16 @@ const Player = ({
     }
   };
 
-  useEffect(() => {
+  const activeLibraryHandler = (nextPrev) => {
+    let currentIndex = songs.findIndex((song) => song.id === currentSong.id);
     setSongs(
       songs.map((song) => {
-        return song.id === currentSong.id
+        return song.id === nextPrev.id
           ? { ...song, active: true }
           : { ...song, active: false };
       })
     );
-  }, [currentSong]);
-
+  };
   // utility function
   const getTime = (time) => {
     return (
