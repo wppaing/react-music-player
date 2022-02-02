@@ -15,6 +15,7 @@ const Player = ({
   songs,
   setSongs,
   setIsPlaying,
+  setImgDeg,
 }) => {
   // state
   const [songInfo, setSongInfo] = useState({
@@ -25,12 +26,30 @@ const Player = ({
   // event handlers
   const playSongHandler = () => {
     if (isPlaying) {
+      getImgRotation();
       audioRef.current.pause();
       setIsPlaying(!isPlaying);
     } else {
       audioRef.current.play();
       setIsPlaying(!isPlaying);
     }
+  };
+
+  const getImgRotation = () => {
+    let el = document.getElementsByTagName("img")[0];
+    let value = window.getComputedStyle(el).getPropertyValue("transform");
+    setImgDeg(getRotationDegrees(value));
+  };
+  const getRotationDegrees = (matrix) => {
+    if (matrix !== "none") {
+      var values = matrix.split("(")[1].split(")")[0].split(",");
+      var a = values[0];
+      var b = values[1];
+      var angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+    } else {
+      var angle = 0;
+    }
+    return angle;
   };
 
   const timeUpdateHandler = (e) => {

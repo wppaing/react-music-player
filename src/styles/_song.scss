@@ -26,4 +26,18 @@
     padding: 1rem;
     padding-top: 2rem;
   }
+
+  @keyframes img-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  .img-playing {
+    @media (prefers-reduced-motion: no-preference) {
+      animation: img-spin infinite 20s linear;
+    }
+  }
 }
