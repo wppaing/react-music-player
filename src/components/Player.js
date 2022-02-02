@@ -46,10 +46,11 @@ const Player = ({
       var a = values[0];
       var b = values[1];
       let angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
+      return;
     } else {
       let angle = 0;
+      return;
     }
-    return angle;
   };
 
   const timeUpdateHandler = (e) => {
