@@ -40,24 +40,6 @@ const Player = ({
     }
   };
 
-  const getImgRotation = () => {
-    let el = document.getElementsByTagName("img")[0];
-    let value = window.getComputedStyle(el).getPropertyValue("transform");
-    setImgDeg(getRotationDegrees(value));
-  };
-  const getRotationDegrees = (matrix) => {
-    if (matrix !== "none") {
-      var values = matrix.split("(")[1].split(")")[0].split(",");
-      var a = values[0];
-      var b = values[1];
-      let angle = Math.round(Math.atan2(b, a) * (180 / Math.PI));
-      return angle;
-    } else {
-      let angle = 0;
-      return angle;
-    }
-  };
-
   // animate cover img
   // let animateCover = () => {
   //   document
