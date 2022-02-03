@@ -1,9 +1,8 @@
-const Song = ({ currentSong, isPlaying, imgDeg }) => {
+const Song = ({ currentSong, isImgRotate }) => {
   return (
     <div className="song-container">
       <img
-        className={isPlaying ? "img-playing" : ""}
-        style={{ transform: `rotate(${imgDeg}deg)` }}
+        className={isImgRotate ? "img-playing" : ""}
         alt="currentSong.name"
         src={currentSong.cover}
       ></img>
